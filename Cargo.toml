@@ -1,0 +1,11 @@
+[package]
+name = "urbit-chatbot-framework"
+version = "0.1.0"
+authors = ["Robert Kornacki <11645932+robkorn@users.noreply.github.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+urbit-http-api          = {version = "0.2.3"}
+json                    = "0.12.4"
