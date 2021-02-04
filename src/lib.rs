@@ -48,6 +48,7 @@ impl ChatBot {
 
     /// Run the `ChatBot`
     pub fn run(&self) -> Option<()> {
+        println!("=======================================\nPowered By The Urbit Chatbot Framework\n=======================================");
         // Create a `Subscription`
         let channel = &mut self.ship.create_channel().ok()?;
         // Subscribe to all graph-store updates
@@ -69,7 +70,6 @@ impl ChatBot {
                 if let Some(mess) = &pop_res {
                     // Parse it to json
                     if let Ok(json) = json::parse(mess) {
-                        println!("Json: {}", json.dump());
                         // If the graph-store node update is not for the chat the `ChatBot`
                         // is watching, then continue to next message.
                         if !self.check_resource_json(&json) {
@@ -77,7 +77,6 @@ impl ChatBot {
                         }
                         // Otherwise, parse json to a `Node`
                         if let Ok(node) = Node::from_graph_update_json(&json) {
-                            println!("{:?}", node);
                             // If the message is posted by the ChatBot ship, ignore
                             // if node.author == self.ship.ship_name
                             if node.author == self.ship.ship_name {
@@ -86,9 +85,9 @@ impl ChatBot {
 
                             // Else parse it as an `AuthoredMessage`
                             let authored_message = AuthoredMessage::new(node.author, node.contents);
-                            println!("AM: {:?}", authored_message);
                             // If the ChatBot intends to respond to the provided message
                             if let Some(message) = (self.respond_to_message)(authored_message) {
+                                println!("Replied to message.");
                                 messages_to_send.push(message)
                             } else {
                                 println!("Message ignored.")
