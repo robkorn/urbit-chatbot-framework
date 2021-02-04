@@ -1,0 +1,12 @@
+[package]
+name = "crypto-prices-chatbot"
+version = "0.1.0"
+authors = ["Robert Kornacki <11645932+robkorn@users.noreply.github.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+urbit-chatbot-framework          = {version = "0.1.0", path="../.."}
+http_req                         = "0.7.2"
+json                             = "0.12.4"
