@@ -25,6 +25,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "authored-chatbot"
+version = "0.1.0"
+dependencies = [
+ "rand",
+ "urbit-chatbot-framework",
+]
+
+[[package]]
 name = "autocfg"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1143,14 +1151,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "simple-chat-bot"
-version = "0.1.0"
-dependencies = [
- "rand",
- "urbit-chatbot-framework",
-]
-
-[[package]]
 name = "slab"
 version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1414,9 +1414,9 @@ dependencies = [
 
 [[package]]
 name = "urbit-http-api"
-version = "0.2.3"
+version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a420d67de765c025aedd255198d16283b0f526f58e86316904eaf275583172df"
+checksum = "fa1b35591596893d61442ba4030583f0e76a73293f1bec5764233a77ddd7e208"
 dependencies = [
  "chrono",
  "eventsource-threaded",
