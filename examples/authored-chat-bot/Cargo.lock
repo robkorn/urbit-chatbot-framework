@@ -1146,6 +1146,7 @@ dependencies = [
 name = "simple-chat-bot"
 version = "0.1.0"
 dependencies = [
+ "rand",
  "urbit-chatbot-framework",
 ]
 

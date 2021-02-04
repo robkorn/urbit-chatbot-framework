@@ -8,9 +8,9 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
         return Some(
             Message::new()
                 .add_text("How's it going ")
-                .add_mention("~mocrux-nomdep")
-                .add_text(format!(
-                    "Here's a random character: {}",
+                .add_mention(&format!("~{}", authored_message.author))
+                .add_text(&format!(
+                    "? Here's a random character: {}",
                     rand::random::<char>()
                 )),
         );
