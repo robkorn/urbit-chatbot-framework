@@ -10,29 +10,31 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
         return None;
     }
 
-    // If the first word is the command `|price`
-    if words[0] == "|price" {
-        // Craft the URL to fetch the price
+    // If the first word is the command `!bible`
+    if words[0] == "!bible" {
+        // Craft the URL to fetch the verses
         let url = format!(
-            "https://api.coingecko.com/api/v3/simple/price?ids={}&vs_currencies=USD",
-            words[1]
+            "https://bible-api.com/{}%20{}?translation=kjv",
+            words[1], words[2]
         );
         // Send a GET request to the url and parse as string
         let res_string = get(&url).ok()?.text().ok()?;
         // Convert the String to JsonValue
         let res_json = json::parse(&res_string).ok()?;
-        // Get the price from the json
-        let price = res_json[words[1].clone()]["usd"].clone();
-        // Check if no price was returned, meaning crypto wasn't found in coingecko api
-        if price.is_null() {
+        // Get the verses reference from the json
+        let reference = res_json["reference"].clone();
+        if reference.is_null() {
             // Return error message
-            return Some(Message::new().add_text("No price data found for requested crypto."));
+            return Some(Message::new().add_text("Unable to find verses."));
         }
-        // Else price acquired and is to be returned
-        else {
-            // Return the price Message
-            return Some(Message::new().add_text(&format!("USD ${}", price)));
+
+        // Append all verses into a single string.
+        let mut verse_text = "".to_string();
+        for verse in res_json["verses"].members() {
+            verse_text += &format!("{}", verse["text"]);
         }
+        // Return the verses
+        return Some(Message::new().add_text(&format!("== {} ==\n{}", reference, verse_text)));
     }
 
     // Otherwise do not respond to message
