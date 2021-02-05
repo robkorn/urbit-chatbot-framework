@@ -94,8 +94,28 @@ The point of this project is to show off the bare minimum requirements for setti
 
 ### Anti Comet Chatbot
 
-[The Anti Comet Chatbot](examples/anti-comet-chatbot/src/main.rs)
+[The Anti Comet Chatbot](examples/anti-comet-chatbot/src/main.rs) is a slight more advanced chatbot which takes a look at the ship that authored the message. If the ship has a name long enough to classify it as a comet, then it responds with a message. Otherwise, it returns `None`, meaning no message is sent by the chatbot to anyone who is not a comet and posts in the given chat.
 
 ### Crypto Prices Chatbot
 
-[The Crypto Prices Chatbot](examples/crypto-prices-chatbot/src/main.rs)
+[The Crypto Prices Chatbot](examples/crypto-prices-chatbot/src/main.rs) is a more complex chatbot that implements a useful command for everyone in a chat to use.
+
+In effect, if anyone types:
+
+```
+|price {crypto_name_here}
+```
+
+such as
+
+```
+|price bitcoin
+```
+
+Then the bot will fetch the bitcoin price via coingecko API, and return it:
+
+```
+USD $37167
+```
+
+This is the first useful chatbot implemented via the Urbit Chatbot Framework, and is a great example of how to go about building chatbots for actual use cases which need to reply based off of commands and make calls to external APIs.
