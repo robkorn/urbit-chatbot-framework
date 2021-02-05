@@ -25,10 +25,9 @@ dependencies = [
 ]
 
 [[package]]
-name = "authored-chatbot"
+name = "anti-comet-chatbot"
 version = "0.1.0"
 dependencies = [
- "rand",
  "urbit-chatbot-framework",
 ]
 

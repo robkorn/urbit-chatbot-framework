@@ -1,20 +1,16 @@
-use rand::prelude::*;
 use urbit_chatbot_framework::{AuthoredMessage, ChatBot, Message};
 
 fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
-    // If the message is written by a specific @p
-    if authored_message.author == "mocrux-nomdep" {
-        // Return a message that mentions ~mocrux-nomdep
+    // If the message author has a name with more than 28 characters (therefore is a comet)
+    if authored_message.author.len() > 28 {
+        // Return a message that calls out the comet
         return Some(
             Message::new()
-                .add_text("How's it going ")
                 .add_mention(&format!("~{}", authored_message.author))
-                .add_text(&format!(
-                    "? Here's a random character: {}",
-                    rand::random::<char>()
-                )),
+                .add_text(" You have been noticed by the Anti Comet Defense League."),
         );
     }
+    if authored_message.author == "mocrux-nomdep" {}
 
     // Otherwise do not respond to message
     None

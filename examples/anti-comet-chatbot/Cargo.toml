@@ -1,5 +1,5 @@
 [package]
-name = "authored-chatbot"
+name = "anti-comet-chatbot"
 version = "0.1.0"
 authors = ["Robert Kornacki <11645932+robkorn@users.noreply.github.com>"]
 edition = "2018"
@@ -8,4 +8,3 @@ edition = "2018"
 
 [dependencies]
 urbit-chatbot-framework          = {version = "0.1.0", path="../.."}
-rand                             = "0.8.3"
