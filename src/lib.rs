@@ -2,7 +2,7 @@ use json::JsonValue;
 pub use urbit_http_api::chat::{AuthoredMessage, Message};
 use urbit_http_api::{default_cli_ship_interface_setup, Node, ShipInterface};
 
-/// This struct represents a chat bot that is connected to a given `ship`,
+/// This struct represents a chatbot that is connected to a given `ship`,
 /// is watching/posting to a specific `chat_ship`/`chat_name`
 /// and is using the function `respond_to_message` to process any messages
 /// which are posted in said chat.
@@ -36,7 +36,7 @@ impl Chatbot {
     /// Create a new `Chatbot` with a `ShipInterface` derived automatically
     /// from a local config file. If the config file does not exist, the
     /// `Chatbot` will create the config file, exit, and prompt the user to
-    /// fille it out.
+    /// fill it out.
     pub fn new_with_local_config(
         respond_to_message: fn(AuthoredMessage) -> Option<Message>,
         chat_ship: &str,
