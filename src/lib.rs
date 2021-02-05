@@ -1,4 +1,6 @@
 use json::JsonValue;
+use std::thread;
+use std::time::Duration;
 pub use urbit_http_api::chat::{AuthoredMessage, Message};
 use urbit_http_api::{default_cli_ship_interface_setup, Node, ShipInterface};
 
@@ -109,6 +111,7 @@ impl Chatbot {
                     .send_message(&self.chat_ship, &self.chat_name, &message)
                     .ok();
             }
+            thread::sleep(Duration::new(0, 500000));
         }
     }
 

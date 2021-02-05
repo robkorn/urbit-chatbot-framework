@@ -1,6 +1,6 @@
 [package]
 name = "urbit-chatbot-framework"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Robert Kornacki <11645932+robkorn@users.noreply.github.com>"]
 edition = "2018"
 description = "A framework that allows anyone to create an Urbit Chatbot with only a few lines of code."
