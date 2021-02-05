@@ -1,4 +1,4 @@
-use urbit_chatbot_framework::{AuthoredMessage, ChatBot, Message};
+use urbit_chatbot_framework::{AuthoredMessage, Chatbot, Message};
 
 fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
     // If the message author has a name with more than 28 characters (therefore is a comet)
@@ -17,6 +17,6 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
 }
 
 fn main() {
-    let chat_bot = ChatBot::new_with_local_config(respond_to_message, "~mocrux-nomdep", "test-93");
+    let chat_bot = Chatbot::new_with_local_config(respond_to_message, "~mocrux-nomdep", "test-93");
     chat_bot.run();
 }

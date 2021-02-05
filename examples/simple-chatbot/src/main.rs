@@ -1,4 +1,4 @@
-use urbit_chatbot_framework::{AuthoredMessage, ChatBot, Message};
+use urbit_chatbot_framework::{AuthoredMessage, Chatbot, Message};
 
 fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
     // Any time a message is posted in the chat, respond in chat with a static message.
@@ -6,6 +6,6 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
 }
 
 fn main() {
-    let chat_bot = ChatBot::new_with_local_config(respond_to_message, "~mocrux-nomdep", "test-93");
+    let chat_bot = Chatbot::new_with_local_config(respond_to_message, "~mocrux-nomdep", "test-93");
     chat_bot.run();
 }

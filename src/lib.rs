@@ -6,7 +6,7 @@ use urbit_http_api::{default_cli_ship_interface_setup, Node, ShipInterface};
 /// is watching/posting to a specific `chat_ship`/`chat_name`
 /// and is using the function `respond_to_message` to process any messages
 /// which are posted in said chat.
-pub struct ChatBot {
+pub struct Chatbot {
     /// `respond_to_message` is a function defined by the user of this framework.
     /// This function receives any messages that get posted to the connected chat,
     /// and if the function returns `Some(message)`, then `message` is posted to the
@@ -17,15 +17,15 @@ pub struct ChatBot {
     chat_name: String,
 }
 
-impl ChatBot {
-    /// Create a new `ChatBot` with a manually provided `ShipInterface`
+impl Chatbot {
+    /// Create a new `Chatbot` with a manually provided `ShipInterface`
     pub fn new(
         respond_to_message: fn(AuthoredMessage) -> Option<Message>,
         ship: ShipInterface,
         chat_ship: &str,
         chat_name: &str,
     ) -> Self {
-        ChatBot {
+        Chatbot {
             respond_to_message: respond_to_message,
             ship: ship,
             chat_ship: chat_ship.to_string(),
@@ -33,9 +33,9 @@ impl ChatBot {
         }
     }
 
-    /// Create a new `ChatBot` with a `ShipInterface` derived automatically
+    /// Create a new `Chatbot` with a `ShipInterface` derived automatically
     /// from a local config file. If the config file does not exist, the
-    /// `ChatBot` will create the config file, exit, and prompt the user to
+    /// `Chatbot` will create the config file, exit, and prompt the user to
     /// fille it out.
     pub fn new_with_local_config(
         respond_to_message: fn(AuthoredMessage) -> Option<Message>,
@@ -46,7 +46,7 @@ impl ChatBot {
         Self::new(respond_to_message, ship, chat_ship, chat_name)
     }
 
-    /// Run the `ChatBot`
+    /// Run the `Chatbot`
     pub fn run(&self) -> Option<()> {
         println!("=======================================\nPowered By The Urbit Chatbot Framework\n=======================================");
         // Create a `Subscription`
@@ -70,14 +70,14 @@ impl ChatBot {
                 if let Some(mess) = &pop_res {
                     // Parse it to json
                     if let Ok(json) = json::parse(mess) {
-                        // If the graph-store node update is not for the chat the `ChatBot`
+                        // If the graph-store node update is not for the chat the `Chatbot`
                         // is watching, then continue to next message.
                         if !self.check_resource_json(&json) {
                             continue;
                         }
                         // Otherwise, parse json to a `Node`
                         if let Ok(node) = Node::from_graph_update_json(&json) {
-                            // If the message is posted by the ChatBot ship, ignore
+                            // If the message is posted by the Chatbot ship, ignore
                             // if node.author == self.ship.ship_name
                             if node.author == self.ship.ship_name {
                                 continue;
@@ -85,7 +85,7 @@ impl ChatBot {
 
                             // Else parse it as an `AuthoredMessage`
                             let authored_message = AuthoredMessage::new(node.author, node.contents);
-                            // If the ChatBot intends to respond to the provided message
+                            // If the Chatbot intends to respond to the provided message
                             if let Some(message) = (self.respond_to_message)(authored_message) {
                                 println!("Replied to message.");
                                 messages_to_send.push(message)
@@ -113,7 +113,7 @@ impl ChatBot {
     }
 
     /// Checks whether the resource json matches the chat_name & chat_ship
-    /// that this `ChatBot` is interacting with
+    /// that this `Chatbot` is interacting with
     fn check_resource_json(&self, resource_json: &JsonValue) -> bool {
         let resource = resource_json["graph-update"]["add-nodes"]["resource"].clone();
         let chat_name = format!("{}", resource["name"]);
