@@ -1408,6 +1408,8 @@ checksum = "f7fe0bb3479651439c9112f72b6c505038574c9fbb575ed1bf3b797fa39dd564"
 [[package]]
 name = "urbit-chatbot-framework"
 version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "03f56791c6efbe2b24a0f9a7a393e24d121c60e116ff22852d7f8baa2e64e84f"
 dependencies = [
  "json",
  "urbit-http-api",
