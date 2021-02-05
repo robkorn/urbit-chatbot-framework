@@ -121,3 +121,13 @@ USD $37167
 ```
 
 This is the first chatbot implemented via the Urbit Chatbot Framework which has real utility, and is a great example of how to go about building chatbots for use cases which need to reply based off of commands and make calls to external APIs.
+
+### Bible Chatbot
+
+[The Bible Chatbot](examples/bible-chatbot/src/main.rs) is another real world example of a useful chatbot that implements a command for everyone in a chat to use.
+
+This chatbot allows anyone to use the `!bible` command and request one or more verses from the bible (KJV):
+
+```
+!bible John 1:1-5
+```
