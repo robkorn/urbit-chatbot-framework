@@ -201,8 +201,8 @@ dependencies = [
 name = "crypto-prices-chatbot"
 version = "0.1.0"
 dependencies = [
- "http_req",
  "json",
+ "reqwest 0.11.0",
  "urbit-chatbot-framework",
 ]
 
@@ -436,16 +436,6 @@ checksum = "2861bd27ee074e5ee891e8b539837a9430012e249d7f0ca2d795650f579c1994"
 dependencies = [
  "bytes 1.0.1",
  "http",
-]
-
-[[package]]
-name = "http_req"
-version = "0.7.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1dab1fb99f5163b9b25805e4c191ea9425ae311442688bfe03c97e8a2ba66e9d"
-dependencies = [
- "native-tls",
- "unicase",
 ]
 
 [[package]]

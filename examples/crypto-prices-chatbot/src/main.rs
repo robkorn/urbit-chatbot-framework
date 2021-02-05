@@ -1,5 +1,5 @@
-use http_req::request;
 use json;
+use reqwest::blocking::get;
 use urbit_chatbot_framework::{AuthoredMessage, Chatbot, Message};
 
 fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
@@ -17,16 +17,13 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
             "https://api.coingecko.com/api/v3/simple/price?ids={}&vs_currencies=USD",
             words[1]
         );
-        // Send a GET request to the url
-        let mut writer = Vec::new(); //container for body of a response
-        let res = request::get(url, &mut writer);
-        // Convert the returned body to a String
-        let res_string = std::str::from_utf8(&writer).ok()?;
+        // Send a GET request to the url and parse as string
+        let res_string = get(&url).ok()?.text().ok()?;
         // Convert the String to JsonValue
         let res_json = json::parse(&res_string).ok()?;
         // Get the price from the json
         let price = res_json[words[1].clone()]["usd"].clone();
-        // Check if no price was returned, meaning improper input
+        // Check if no price was returned, meaning crypto wasn't found in coingecko api
         if price.is_null() {
             // Return error message
             return Some(Message::new().add_text("No price data found for requested crypto."));

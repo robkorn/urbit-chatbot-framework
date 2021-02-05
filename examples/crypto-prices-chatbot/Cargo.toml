@@ -8,5 +8,5 @@ edition = "2018"
 
 [dependencies]
 urbit-chatbot-framework          = {version = "0.1.0", path="../.."}
-http_req                         = "0.7.2"
 json                             = "0.12.4"
+reqwest                          = "0.11.0"
