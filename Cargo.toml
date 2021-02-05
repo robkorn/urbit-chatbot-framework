@@ -3,6 +3,10 @@ name = "urbit-chatbot-framework"
 version = "0.1.0"
 authors = ["Robert Kornacki <11645932+robkorn@users.noreply.github.com>"]
 edition = "2018"
+description = "A framework that allows anyone to create an Urbit Chatbot with only a few lines of code."
+repository = "https://github.com/robkorn/urbit-chatbot-framework"
+license = "MIT"
+keywords = ["urbit", "chatbot", "framework", "http"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

@@ -1,6 +1,6 @@
 # Urbit Chatbot Framework
 
-This Rust crate allows anyone to create an Urbit Chatbot with only a few lines of code.
+A framework that allows anyone to create an Urbit Chatbot with only a few lines of code.
 
 The Urbit Chatbot Framework takes care of all the complexities of connecting to a ship, subscribing to a chat, parsing messages, and sending messages automatically for you. All you have to do is simply write the message handling/response logic and everything else will just work.
 
