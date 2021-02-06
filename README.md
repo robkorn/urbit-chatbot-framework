@@ -4,6 +4,8 @@ A framework that allows anyone to create an Urbit Chatbot with only a few lines 
 
 The Urbit Chatbot Framework takes care of all the complexities of connecting to a ship, subscribing to a chat, parsing messages, and sending messages automatically for you. All you have to do is simply write the message handling/response logic and everything else will just work.
 
+This crate is [available on crates.io](https://crates.io/crates/urbit-chatbot-framework).
+
 ## Basic Design
 
 At its core, the framework revolves around the `Chatbot` struct. It is defined as:
