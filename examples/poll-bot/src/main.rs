@@ -1,10 +1,9 @@
-use urbit_chatbot_framework::{AuthoredMessage, Chatbot, Message};
-use std::fs;
-use rand::random;
 use json;
+use rand::random;
+use std::fs;
+use urbit_chatbot_framework::{AuthoredMessage, Chatbot, Message};
 
 // poll file structure is json object {opts:{"opt1":0, "opt2":0, ...}, owner:"shipname", voters:{"voter1":1, "voter2":1, ...}}
-
 
 fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
     // Split the message up into words (split on whitespace)
@@ -25,26 +24,30 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
             pollfile["opts"][&opts[i]] = 0.into();
             if i == 0 {
                 msg.push_str(&opts[i]);
-            }
-            else {
+            } else {
                 msg.push_str(&(" ".to_owned() + &opts[i]));
             }
         }
 
-        msg.push_str(&format!(". Type \"!vote {} [option]\" to participate.", pollid.to_string()));
+        msg.push_str(&format!(
+            ". Type \"!vote {} [option]\" to participate.",
+            pollid.to_string()
+        ));
         // write to file named by poll id
-        fs::write(format!("polls/{}.json", pollid), json::stringify(pollfile)).expect("error writing poll file");
-        
-        return Some(Message::new().add_text(&msg));
-    }
+        fs::write(format!("polls/{}.json", pollid), json::stringify(pollfile))
+            .expect("error writing poll file");
 
-    else if words[0] == "!vote" {
+        return Some(Message::new().add_text(&msg));
+    } else if words[0] == "!vote" {
         if words.len() != 3 {
-            return Some(Message::new().add_text("Invalid vote. Format: \"!vote [poll id] [option]\""));
+            return Some(
+                Message::new().add_text("Invalid vote. Format: \"!vote [poll id] [option]\""),
+            );
         }
-        
+
         // read poll file of chosen poll
-        let polldata = fs::read_to_string(format!("polls/{}.json", words[1])).expect("error reading poll file"); 
+        let polldata = fs::read_to_string(format!("polls/{}.json", words[1]))
+            .expect("error reading poll file");
         // parse vote data and find option to increment
         let mut parsed = json::parse(&polldata).unwrap();
         // make sure voter hasn't voted already
@@ -64,19 +67,20 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
         let votes = json::stringify(parsed["opts"].clone());
         let text = format!("vote for {} counted. current results: {}", words[2], votes);
         return Some(Message::new().add_text(&text));
-    }
-
-    else if words[0] == "!endpoll" {
+    } else if words[0] == "!endpoll" {
         if words.len() != 2 {
             return Some(Message::new().add_text("Invalid poll command"));
         }
-        
-        let result = fs::read_to_string(format!("polls/{}.json", words[1])).expect("error reading poll file");
+
+        let result = fs::read_to_string(format!("polls/{}.json", words[1]))
+            .expect("error reading poll file");
         // check if person making command is poll owner
         let parsed = json::parse(&result).unwrap();
         if parsed["owner"].to_string() != authored_message.author {
-            return Some(Message::new().add_text("Only the person who started the poll can end it."));
-        } 
+            return Some(
+                Message::new().add_text("Only the person who started the poll can end it."),
+            );
+        }
         let votes = json::stringify(parsed["opts"].clone());
         let text = format!("Poll ID {} has ended. Results: {}", words[1], votes);
         return Some(Message::new().add_text(&text));
@@ -85,7 +89,6 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
     // Otherwise do not respond to message
     None
 }
-
 
 fn main() {
     let chat_bot = Chatbot::new_with_local_config(respond_to_message, "~ship-name", "chat-name");

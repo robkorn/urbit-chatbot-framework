@@ -133,3 +133,29 @@ This chatbot allows anyone to use the `!bible` command and request one or more v
 ```
 !bible John 1:1-5
 ```
+
+### Poll Chatbot
+
+[The Poll Chatbot](examples/poll-bot) is the most complex chatbot example enabling anyone to run votes/polls inside of their chats. Every poll is saved into a `.json` file and ensured that every ship only gets a single vote.
+
+To start a poll with any given amount of options:
+
+```
+!poll [option1] [option2] ...
+```
+
+Once a poll is running any ship can vote (precisely once):
+
+```
+!vote [pollid] [option]
+```
+
+The creator of a poll can end the poll via:
+
+```
+!endpoll [pollid]
+```
+
+Polls have a numerical ID generated at creation and are stored in a json file in the directory that the bot is run from.
+
+(Credits to [~hodzod-walrus](https://github.com/benmcc100) for creating the Poll Chatbot)

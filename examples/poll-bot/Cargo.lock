@@ -198,17 +198,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "crypto-prices-chatbot"
-version = "0.1.0"
-dependencies = [
- "json",
- "rand",
- "regex",
- "reqwest 0.11.0",
- "urbit-chatbot-framework",
-]
-
-[[package]]
 name = "encoding_rs"
 version = "0.8.26"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -904,6 +893,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3831453b3449ceb48b6d9c7ad7c96d5ea673e9b470a1dc578c2ce6521230884c"
 
 [[package]]
+name = "poll-bot"
+version = "0.1.0"
+dependencies = [
+ "json",
+ "rand",
+ "reqwest 0.11.0",
+ "urbit-chatbot-framework",
+]
+
+[[package]]
 name = "ppv-lite86"
 version = "0.2.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1409,7 +1408,7 @@ checksum = "f7fe0bb3479651439c9112f72b6c505038574c9fbb575ed1bf3b797fa39dd564"
 
 [[package]]
 name = "urbit-chatbot-framework"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "json",
  "urbit-http-api",
