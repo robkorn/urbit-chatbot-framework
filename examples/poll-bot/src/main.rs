@@ -74,11 +74,11 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
         let result = fs::read_to_string(format!("polls/{}.json", words[1])).expect("error reading poll file");
         // check if person making command is poll owner
         let parsed = json::parse(&result).unwrap();
-        if parsed["owner"] != authored_message.author {
+        if parsed["owner"].to_string() != authored_message.author {
             return Some(Message::new().add_text("Only the person who started the poll can end it."));
         } 
-
-        let text = format!("Poll ID {} has ended. Results: {}", words[1], result);
+        let votes = json::stringify(parsed["opts"].clone());
+        let text = format!("Poll ID {} has ended. Results: {}", words[1], votes);
         return Some(Message::new().add_text(&text));
     }
 
