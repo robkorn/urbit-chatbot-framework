@@ -34,6 +34,7 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
             pollid.to_string()
         ));
         // write to file named by poll id
+        fs::create_dir("polls").ok();
         fs::write(format!("polls/{}.json", pollid), json::stringify(pollfile))
             .expect("error writing poll file");
 
