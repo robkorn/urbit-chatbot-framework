@@ -143,6 +143,11 @@ To start a poll with any given amount of options:
 ```
 !poll [option1] [option2] ...
 ```
+or
+```
+!poll -t [title] [option1] [option2] ...
+```
+The title of a poll acts as its ID, so don't use the same one multiple times yet.
 
 Once a poll is running any ship can vote (precisely once):
 
@@ -150,12 +155,23 @@ Once a poll is running any ship can vote (precisely once):
 !vote [pollid] [option]
 ```
 
+Results of a poll can be accessed via:
+
+```
+!results [pollid]
+```
+or
+```
+!results all
+```
+to view all active polls.
+
 The creator of a poll can end the poll via:
 
 ```
 !endpoll [pollid]
 ```
 
-Polls have a numerical ID generated at creation and are stored in a json file in the directory that the bot is run from.
+Polls without titles have a numerical ID generated at creation and are stored in a json file in the directory that the bot is run from.
 
 (Credits to [~hodzod-walrus](https://github.com/benmcc100) for creating the Poll Chatbot)
