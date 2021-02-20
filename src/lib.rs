@@ -111,7 +111,7 @@ impl Chatbot {
                     .send_message(&self.chat_ship, &self.chat_name, &message)
                     .ok();
             }
-            thread::sleep(Duration::new(0, 500000));
+            thread::sleep(Duration::new(0, 500000000));
         }
     }
 
