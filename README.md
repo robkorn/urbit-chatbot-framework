@@ -6,6 +6,8 @@ The Urbit Chatbot Framework takes care of all the complexities of connecting to 
 
 This crate is [available on crates.io](https://crates.io/crates/urbit-chatbot-framework).
 
+[![awesome urbit badge](https://img.shields.io/badge/~-awesome%20urbit-lightgrey)](https://github.com/urbit/awesome-urbit)
+
 ## Basic Design
 
 At its core, the framework revolves around the `Chatbot` struct. It is defined as:
