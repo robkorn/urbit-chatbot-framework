@@ -1,8 +1,8 @@
 use json::JsonValue;
 use std::thread;
 use std::time::Duration;
-pub use urbit_http_api::chat::{AuthoredMessage, Message};
 use urbit_http_api::{default_cli_ship_interface_setup, Node, ShipInterface};
+pub use urbit_http_api::{AuthoredMessage, Message};
 
 /// This struct represents a chatbot that is connected to a given `ship`,
 /// is watching/posting to a specific `chat_ship`/`chat_name`
@@ -86,7 +86,12 @@ impl Chatbot {
                             }
 
                             // Else parse it as an `AuthoredMessage`
-                            let authored_message = AuthoredMessage::new(node.author, node.contents);
+                            let authored_message = AuthoredMessage::new(
+                                &node.author,
+                                &node.contents,
+                                &node.time_sent_formatted(),
+                                &node.index,
+                            );
                             // If the Chatbot intends to respond to the provided message
                             if let Some(message) = (self.respond_to_message)(authored_message) {
                                 println!("Replied to message.");
@@ -108,7 +113,7 @@ impl Chatbot {
             for message in messages_to_send {
                 channel
                     .chat()
-                    .send_message(&self.chat_ship, &self.chat_name, &message)
+                    .send_chat_message(&self.chat_ship, &self.chat_name, &message)
                     .ok();
             }
             thread::sleep(Duration::new(0, 500000000));
