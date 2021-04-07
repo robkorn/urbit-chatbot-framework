@@ -1408,7 +1408,7 @@ checksum = "f7fe0bb3479651439c9112f72b6c505038574c9fbb575ed1bf3b797fa39dd564"
 
 [[package]]
 name = "urbit-chatbot-framework"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "json",
  "urbit-http-api",
@@ -1416,11 +1416,12 @@ dependencies = [
 
 [[package]]
 name = "urbit-http-api"
-version = "0.2.4"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fa1b35591596893d61442ba4030583f0e76a73293f1bec5764233a77ddd7e208"
+checksum = "eadf3bdabc01db75336eb567a79848e11ca759a943513999c061dec52ceda5c2"
 dependencies = [
  "chrono",
+ "crossbeam",
  "eventsource-threaded",
  "json",
  "rand",
