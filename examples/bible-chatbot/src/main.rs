@@ -4,7 +4,7 @@ use urbit_chatbot_framework::{AuthoredMessage, Chatbot, Message};
 
 fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
     // Split the message up into words (split on whitespace)
-    let words = authored_message.message.to_formatted_words();
+    let words = authored_message.contents.to_formatted_words();
     // Error check to ensure sufficient number of words to check for command
     if words.len() <= 2 {
         return None;
