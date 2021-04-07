@@ -111,10 +111,13 @@ impl Chatbot {
             // Send each response message that was returned by the `respond_to_message`
             // function. This is separated until after done parsing messages due to mutable borrows.
             for message in messages_to_send {
-                channel
-                    .chat()
-                    .send_chat_message(&self.chat_ship, &self.chat_name, &message)
-                    .ok();
+                println!("Sending message: {:?}", message);
+                println!(
+                    "res: {:?}",
+                    channel
+                        .chat()
+                        .send_chat_message(&self.chat_ship, &self.chat_name, &message)
+                );
             }
             thread::sleep(Duration::new(0, 500000000));
         }
