@@ -19,7 +19,7 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
             verse_url_string = format!("{}{}{}", verse_url_string, word, "%20");
         }
         // Remove the excess %20
-        verse_url_string = verse_url_string[0..verse_url_string.len() - 4].to_string();
+        verse_url_string = verse_url_string[0..verse_url_string.len() - 3].to_string();
 
         // Craft the URL to fetch the verses
         let url = format!("https://bible-api.com/{}?translation=kjv", verse_url_string);
