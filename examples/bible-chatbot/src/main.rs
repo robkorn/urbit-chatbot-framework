@@ -4,7 +4,7 @@ use urbit_chatbot_framework::{AuthoredMessage, Chatbot, Message};
 
 fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
     // Split the message up into words (split on whitespace)
-    let words = authored_message.contents.to_formatted_words();
+    let mut words = authored_message.contents.to_formatted_words();
     // Error check to ensure sufficient number of words to check for command
     if words.len() <= 2 {
         return None;
@@ -12,11 +12,19 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
 
     // If the first word is the command `!bible`
     if words[0] == "!bible" {
+        // Process the verse to be added to the url
+        let verse_words = words.split_off(1);
+        let mut verse_url_string = String::new();
+        for word in verse_words {
+            verse_url_string = format!("{}{}{}", verse_url_string, word, "%20");
+        }
+        // Remove the excess %20
+        verse_url_string = verse_url_string[0..verse_url_string.len() - 4].to_string();
+
         // Craft the URL to fetch the verses
-        let url = format!(
-            "https://bible-api.com/{}%20{}?translation=kjv",
-            words[1], words[2]
-        );
+        let url = format!("https://bible-api.com/{}?translation=kjv", verse_url_string);
+        println!("Verse url: {}", url);
+
         // Send a GET request to the url and parse as string
         let res_string = get(&url).ok()?.text().ok()?;
         // Convert the String to JsonValue
@@ -42,6 +50,7 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
 }
 
 fn main() {
-    let chat_bot = Chatbot::new_with_local_config(respond_to_message, "~mocrux-nomdep", "test-93");
+    let chat_bot =
+        Chatbot::new_with_local_config(respond_to_message, "~topnup-firber", "culture-war-1327");
     chat_bot.run();
 }

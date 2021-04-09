@@ -1415,9 +1415,9 @@ dependencies = [
 
 [[package]]
 name = "urbit-http-api"
-version = "0.7.0"
+version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "eadf3bdabc01db75336eb567a79848e11ca759a943513999c061dec52ceda5c2"
+checksum = "c8eb88ebb94c0b1741529c06ed3a56230c84d7c8fc8264bc87b5d6d1a177bf6a"
 dependencies = [
  "chrono",
  "crossbeam",
