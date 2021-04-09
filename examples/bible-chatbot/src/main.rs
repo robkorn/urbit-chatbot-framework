@@ -50,7 +50,6 @@ fn respond_to_message(authored_message: AuthoredMessage) -> Option<Message> {
 }
 
 fn main() {
-    let chat_bot =
-        Chatbot::new_with_local_config(respond_to_message, "~topnup-firber", "culture-war-1327");
+    let chat_bot = Chatbot::new_with_local_config(respond_to_message, "ship", "chat");
     chat_bot.run();
 }

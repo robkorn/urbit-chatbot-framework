@@ -50,7 +50,7 @@ impl Chatbot {
 
     /// Run the `Chatbot`
     pub fn run(&self) -> Option<()> {
-        println!("=======================================\nPowered By The Urbit Chatbot Framework\n=======================================");
+        println!("=======================================\nChatbot Powered By The Urbit Chatbot Framework\n=======================================");
         // Create a `Subscription`
         let channel = &mut self.ship.create_channel().ok()?;
         // Subscribe to all graph-store updates
@@ -111,13 +111,10 @@ impl Chatbot {
             // Send each response message that was returned by the `respond_to_message`
             // function. This is separated until after done parsing messages due to mutable borrows.
             for message in messages_to_send {
-                println!("Sending message: {:?}", message);
-                println!(
-                    "res: {:?}",
-                    channel
-                        .chat()
-                        .send_chat_message(&self.chat_ship, &self.chat_name, &message)
-                );
+                channel
+                    .chat()
+                    .send_chat_message(&self.chat_ship, &self.chat_name, &message)
+                    .ok();
             }
             thread::sleep(Duration::new(0, 500000000));
         }
