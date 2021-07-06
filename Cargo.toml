@@ -11,5 +11,5 @@ keywords = ["urbit", "chatbot", "framework", "http"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-urbit-http-api          = {version = "0.7.1"}
+urbit-http-api          = {version = "0.7.2"}
 json                    = "0.12.4"
